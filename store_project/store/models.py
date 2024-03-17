@@ -42,7 +42,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=100, choices=BRAND, default='other')
     category = models.CharField(max_length=100, choices=CATEGORY, default='Other')
 
-    pid = ShortUUIDField(length=5, max_length=40, prefix="PID-", alphabet="abcdefghijklmnop1234567890", primary_key=True,)
+    # pid = ShortUUIDField(length=5, max_length=40, prefix="PID-", alphabet="abcdefghijklmnop1234567890", primary_key=True,)
     sku = ShortUUIDField(length=5, max_length=10, prefix="SKU-", alphabet="ABCDEFG1234567890", unique=True)
 
     quantity = models.IntegerField()
@@ -82,12 +82,12 @@ class Order(models.Model):
 
     phone_number = models.CharField(max_length=15)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
-    created_at = models.DateTimeField(auto_now_add=True)
+    # created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     status = models.CharField(max_length=200, choices=STATUS, default='other')
     order_date = models.DateTimeField(auto_now_add=True)
-    order_id = ShortUUIDField(length=5, max_length=10, prefix="OID-", alphabet="abcdefghijklmnop1234567890", unique=True)
+    # order_id = ShortUUIDField(length=5, max_length=10, prefix="OID-", alphabet="abcdefghijklmnop1234567890", unique=True)
 
     
     def calculate_total_price(self):
@@ -107,7 +107,7 @@ class Order(models.Model):
         return summary
 
     def __str__(self):
-        return f"Order #{self.order_id} - {self.customer_name}"
+        return f"Order #{self.pk} - {self.customer_name}"
 
     
 
